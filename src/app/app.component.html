@@ -1,3 +1,70 @@
-ANGULARRRRRR
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4">
+        <input type="search" class="form-control" id="datatable-search-input" [(ngModel)]="productName"
+          (ngModelChange)="getAllProducts($event)" placeholder="Search" />
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
+        <a class="paging" (click)="switchPage(0)">First page</a>
+        <a class="paging" (click)="switchPage(currentPage-1)"><i class="fas fa-chevron-left"></i></a>
+        <a class="paging" (click)="switchPage(currentPage+1)"><i class="fas fa-chevron-right"></i></a>
+        <a class="paging" (click)="switchPage(totalPages)">last page</a>
+      </div>
+      <div class="col-md-2"></div>
+        <div class="col-md-1">
+        <button class="btn btn-primary add-button" (click)="addProduct()">Add product</button>
+      </div>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th width="35%" class="roudeded-left-top-corner"><a (click)="sortData('name')">{{headerColumnName.get('name')}}</a></th>
+          <th scope="col"><a (click)="sortData('price')">{{headerColumnName.get('price')}}</a></th>
+          <th scope="col"><a (click)="sortData('amount')">{{headerColumnName.get('amount')}}</a></th>
+          <th scope="col">Code</th>
+          <th width="10%" class="roudeded-right-top-corner" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productList">
+          <td [class]="amountClass(product.amount)">{{ product.name }}</td>
+          <td [class]="amountClass(product.amount)">{{ product.price | number }}</td>
+          <td [class]="amountClass(product.amount)">{{ product.amount | number }}</td>
+          <td [class]="amountClass(product.amount)">{{ product.code}}</td>
+          <td [class]="amountClass(product.amount)"> <i class="glyphicon glyphicon-trash"
+              (click)="deleteProduct(product)" style="color: red; cursor: pointer;"></i></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+
+</html>
+
+
+
+
+
+
 
 <router-outlet></router-outlet>

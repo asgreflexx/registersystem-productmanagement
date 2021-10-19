@@ -1,0 +1,58 @@
+table {
+    margin-top: 7px;
+    text-align: center ;
+}
+
+.container {
+    width: 90%;
+    margin-top: 40px;
+}
+
+.paging {
+    font-size: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+th{
+    text-align: center;
+    background: lightgray;
+    user-select: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+.add-button {
+    margin-right: 10px;
+   
+}
+
+
+.amountMiddle {
+    background: rgb(236, 236, 159) ;
+}
+
+.amountLow {
+    background: rgb(245, 167, 167);
+}
+
+.amountEnough {
+    background: rgb(195, 238, 195);
+}
+
+.roudeded-right-top-corner {
+    border-top-right-radius: 10px;
+}
+
+.roudeded-left-top-corner {
+    border-top-left-radius: 10px;
+
+}
+
+.footer {
+    position: fixed;
+    background-color: lightcyan;
+    text-align: center;
+}
