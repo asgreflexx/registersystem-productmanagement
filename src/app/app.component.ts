@@ -122,5 +122,13 @@ export class AppComponent implements OnInit {
     this.getAllProducts();
   }
 
+  classForPrev() : string {
+    return "paging " + (this.currentPage == 0 ? "disabled" : "");
+  }
+
+  classForNext() : string {
+    return "paging " + (this.currentPage == this.totalPages -1 ? "disabled" : "");
+  }
+
 
 }

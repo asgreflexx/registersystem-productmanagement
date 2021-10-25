@@ -1,5 +1,5 @@
 table {
-    margin-top: 7px;
+    margin-top: 15px;
     text-align: center ;
 }
 
@@ -9,9 +9,18 @@ table {
 }
 
 .paging {
-    font-size: 25px;
+    font-size: 20px;
     margin-left: 5px;
     margin-right: 5px;
+    user-select: none;
+    padding-top: 3.5px;
+    
+}
+
+.disabled {
+    color: grey;
+    pointer-events: none;
+    cursor: default;
 }
 
 th{
@@ -49,10 +58,4 @@ a {
 .roudeded-left-top-corner {
     border-top-left-radius: 10px;
 
-}
-
-.footer {
-    position: fixed;
-    background-color: lightcyan;
-    text-align: center;
 }

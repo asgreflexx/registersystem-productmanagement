@@ -1,0 +1,6 @@
+.error-message {
+    white-space: pre-line;
+    color: red;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}

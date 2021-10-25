@@ -10,29 +10,31 @@
 
 <body>
   <div class="container">
-
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-sm-4">
         <input type="search" class="form-control" id="datatable-search-input" [(ngModel)]="productName"
           (ngModelChange)="getAllProducts($event)" placeholder="Search" />
       </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-4">
-        <a class="paging" (click)="switchPage(0)">First page</a>
-        <a class="paging" (click)="switchPage(currentPage-1)"><i class="fas fa-chevron-left"></i></a>
-        <a class="paging" (click)="switchPage(currentPage+1)"><i class="fas fa-chevron-right"></i></a>
-        <a class="paging" (click)="switchPage(totalPages)">last page</a>
+      <div class="col-sm-5  text-center">
+        <a class={{classForPrev()}} (click)="switchPage(0)">First</a>
+        <a class={{classForPrev()}} (click)="switchPage(currentPage-1)"><i class="fas fa-chevron-left"></i></a>
+        <b class="paging">
+          {{currentPage+1}} / {{totalPages}}
+        </b>
+        <a class={{classForNext()}} (click)="switchPage(currentPage+1)"><i class="fas fa-chevron-right"></i></a>
+        <a class={{classForNext()}} (click)="switchPage(totalPages)">last</a>
       </div>
-      <div class="col-md-2"></div>
-        <div class="col-md-1">
-        <button class="btn btn-primary add-button" (click)="addProduct()">Add product</button>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-2 text-right">
+        <button class="btn btn-primary btn-md btn-block add-button" (click)="addProduct()">Add product</button>
       </div>
     </div>
 
-    <table class="table table-striped">
+    <table class="table table-responsive">
       <thead>
         <tr>
-          <th width="35%" class="roudeded-left-top-corner"><a (click)="sortData('name')">{{headerColumnName.get('name')}}</a></th>
+          <th width="35%" class="roudeded-left-top-corner"><a
+              (click)="sortData('name')">{{headerColumnName.get('name')}}</a></th>
           <th scope="col"><a (click)="sortData('price')">{{headerColumnName.get('price')}}</a></th>
           <th scope="col"><a (click)="sortData('amount')">{{headerColumnName.get('amount')}}</a></th>
           <th scope="col">Code</th>
@@ -47,11 +49,6 @@
           <td [class]="amountClass(product.amount)">{{ product.code}}</td>
           <td [class]="amountClass(product.amount)"> <i class="glyphicon glyphicon-trash"
               (click)="deleteProduct(product)" style="color: red; cursor: pointer;"></i></td>
-        </tr>
-        <tr>
-          <td colspan="5">
-
-          </td>
         </tr>
       </tbody>
     </table>

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs"; 
+import { catchError } from 'rxjs/operators'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ProductDto } from "../domain/product";
 import { ProductWrapper } from "../domain/product-wrapper";
@@ -25,20 +26,20 @@ export class ProductService {
   }
 
   addProduct(product: ProductDto) {
-    return this.http.post(this.BASE_URL, product);
+    return this.http.post<ProductDto>(this.BASE_URL, product);
   }
 
-  /*
-  private handleError(err: HttpErrorResponse): Observable<never> {        
+  
+  private handleError(err: HttpErrorResponse): Observable<never> {    
       let errorMessage = '';
       if (err.error instanceof ErrorEvent) {         
-        errorMessage = `An error occurred: ${err.error.message}`;
+        errorMessage = `An error occurred: ${err}`;
       } else {          
-        errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+        errorMessage = `Server returned code: ${err}, error message is: ${err.message}`;
       }
-      console.error(errorMessage);
+      console.error("error from handle error: ", errorMessage);
       return throwError(errorMessage);
     }
-    */
+    
 
 }
