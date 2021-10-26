@@ -47,8 +47,10 @@
           <td [class]="amountClass(product.amount)">{{ product.price | number }}</td>
           <td [class]="amountClass(product.amount)">{{ product.amount | number }}</td>
           <td [class]="amountClass(product.amount)">{{ product.code}}</td>
-          <td [class]="amountClass(product.amount)"> <i class="glyphicon glyphicon-trash"
-              (click)="deleteProduct(product)" style="color: red; cursor: pointer;"></i></td>
+          <td [class]="amountClass(product.amount)"> 
+            <i class="fas fa-edit" id="edit-button" (click)="editProduct(product)"></i>
+            <i class="far fa-trash-alt" id="delete-button" (click)="deleteProduct(product)"></i>
+          </td>
         </tr>
       </tbody>
     </table>

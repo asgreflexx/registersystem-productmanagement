@@ -3,6 +3,11 @@ table {
     text-align: center ;
 }
 
+td {
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .container {
     width: 90%;
     margin-top: 40px;
@@ -58,4 +63,15 @@ a {
 .roudeded-left-top-corner {
     border-top-left-radius: 10px;
 
+}
+
+#edit-button{
+    color: rgb(0, 140, 255);
+    margin-right: 10px; 
+    cursor: pointer;
+}
+
+#delete-button{
+    color: red; 
+    cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductDto, ProductErrorResponse } from '../domain/product';
 import { ProductService } from '../services/product.service';
 
@@ -14,46 +14,41 @@ export class AddDialogComponent implements OnInit {
   errorProductMessage: ProductErrorResponse;
   errorMessage = '';
   product: ProductDto;
-  constructor(private service: ProductService, private dialogRef: MatDialogRef<AddDialogComponent>) { }
+  constructor(
+    private service: ProductService, 
+    private dialogRef: MatDialogRef<AddDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public editProduct: ProductDto
+    ) { }
 
   ngOnInit(): void {
     this.product = {
-      "amount": 0,
-      "code": '',
-      "name": '',
-      price: 0
+      id : '',
+      name: '',
+      price: 0,
+      code: '',
+      amount: 0,
+      foodType: ''
     };
+    if (this.editProduct)
+      this.copyProduct();
+  }
+
+  copyProduct () {    
+      this.product.id = this.editProduct.id;
+      this.product.name = this.editProduct.name;
+      this.product.price = this.editProduct.price;
+      this.product.code = this.editProduct.code;
+      this.product.amount = this.editProduct.amount;
+      this.product.foodType = this.editProduct.foodType;      
   }
 
   onSubmit() {
     this.service.addProduct(this.product).subscribe(
-      data => {
-        console.log(data);
+      data => {        
         this.dialogRef.close("true");
       },
         error => this.handleError(error)
     );
-  }
-
-  setName(name: string) {
-    this.product.name = name;
-  }
-
-  setCode(code: string) {
-    this.product.code = code;
-  }
-
-  setPrice(price: number) {
-    this.product.price = price;
-  }
-
-  setAmount(amount: number) {
-    this.product.amount = amount;
-  }
-
-
-  setType(type: string) {
-    this.product.foodType = type;
   }
 
   handleError(errorResponse: any) {
@@ -70,5 +65,4 @@ export class AddDialogComponent implements OnInit {
     msg += this.errorProductMessage.message ? this.errorProductMessage.message : "";
     this.errorMessage = msg;    
   }
-
 }

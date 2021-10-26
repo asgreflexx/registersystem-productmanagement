@@ -86,6 +86,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  editProduct (productToEdit : ProductDto) {
+    var dialogRef = this.dialog.open(AddDialogComponent, {
+      disableClose: true,
+      width : '400px',
+      data:  productToEdit      
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "true") {
+        this.getAllProducts();
+      }
+    });
+  }
+
   sortData(fieldName) {
     var columnName = this.headerColumnName.get(fieldName);
     const sortField = this.sortArray.find(x => x.includes(fieldName));
