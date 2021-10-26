@@ -17,9 +17,7 @@ td {
     font-size: 20px;
     margin-left: 5px;
     margin-right: 5px;
-    user-select: none;
-    padding-top: 3.5px;
-    
+    user-select: none;    
 }
 
 .disabled {
@@ -39,8 +37,7 @@ a {
 }
 
 .add-button {
-    margin-right: 10px;
-   
+    margin-right: 10px;   
 }
 
 

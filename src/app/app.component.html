@@ -15,7 +15,7 @@
         <input type="search" class="form-control" id="datatable-search-input" [(ngModel)]="productName"
           (ngModelChange)="getAllProducts($event)" placeholder="Search" />
       </div>
-      <div class="col-sm-5  text-center">
+      <div class="col-sm-5  text-center" style="margin-top: 3.5px">
         <a class={{classForPrev()}} (click)="switchPage(0)">First</a>
         <a class={{classForPrev()}} (click)="switchPage(currentPage-1)"><i class="fas fa-chevron-left"></i></a>
         <b class="paging">
