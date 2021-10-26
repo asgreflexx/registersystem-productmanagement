@@ -6,3 +6,7 @@ export class ProductDto {
     amount: number;
     price: number;
 }
+
+export class ProductErrorResponse extends ProductDto {
+    message : string;
+}

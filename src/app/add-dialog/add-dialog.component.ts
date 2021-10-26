@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ProductDto } from '../domain/product';
+import { ProductDto, ProductErrorResponse } from '../domain/product';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProductService } from '../services/product.service';
 })
 export class AddDialogComponent implements OnInit {
 
-  errorProductMessage: ProductDto;
+  errorProductMessage: ProductErrorResponse;
   errorMessage = '';
   product: ProductDto;
   constructor(private service: ProductService, private dialogRef: MatDialogRef<AddDialogComponent>) { }
@@ -27,8 +27,11 @@ export class AddDialogComponent implements OnInit {
 
   onSubmit() {
     this.service.addProduct(this.product).subscribe(
-      data => this.dialogRef.close("true"),
-      error => this.handleError(error)
+      data => {
+        console.log(data);
+        this.dialogRef.close("true");
+      },
+        error => this.handleError(error)
     );
   }
 
@@ -54,6 +57,7 @@ export class AddDialogComponent implements OnInit {
   }
 
   handleError(errorResponse: any) {
+    this.errorProductMessage = new ProductErrorResponse();
     this.errorProductMessage = (errorResponse.error);
     this.setErrorMessage();
   }
@@ -62,9 +66,9 @@ export class AddDialogComponent implements OnInit {
     var msg = this.errorProductMessage.name ? "Name " + this.errorProductMessage.name + '\n' : "";
     msg += this.errorProductMessage.price ? "Price " + this.errorProductMessage.price + '\n' : "";
     msg += this.errorProductMessage.code ? "Code " + this.errorProductMessage.code + '\n': "";
-    msg += this.errorProductMessage.code ? "Food Typ " + this.errorProductMessage.foodType + '\n': "";
-    this.errorMessage = msg;
-    
+    msg += this.errorProductMessage.foodType ? "Food Typ " + this.errorProductMessage.foodType + '\n': "";
+    msg += this.errorProductMessage.message ? this.errorProductMessage.message : "";
+    this.errorMessage = msg;    
   }
 
 }
