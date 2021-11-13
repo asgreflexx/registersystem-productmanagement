@@ -30,7 +30,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: lacribeiro11
-          password: ab3761cc-32c3-4f11-9574-69ba8ebab972
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Set up Docker Buildx
         id: buildx
@@ -44,3 +44,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: lacribeiro11/registersystem-productmanagement:latest
+
+      - name: Docker deployment on to Unleash-IT
+        uses: appleboy/ssh-action@master
+        with:
+          host: 85.235.66.255
+          username: luisribeiro
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 3333
+          script: docker stack deploy --compose-file ./docker-swarm/webdev.yml webdev
