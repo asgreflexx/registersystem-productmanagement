@@ -44,3 +44,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: lacribeiro11/registersystem-productmanagement:latest
+
+      - name: Docker deployment on to Unleash-IT
+        uses: appleboy/ssh-action@master
+        with:
+          host: 85.235.66.255
+          username: luisribeiro
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 3333
+          script: docker stack deploy --compose-file ./docker-swarm/webdev.yml webdev
